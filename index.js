@@ -87,7 +87,30 @@ async function run() {
             const parts = req.body
             const result =await packageCollection.insertOne(parts)
             res.send(result)
-})
+        })
+        //update package
+        app.put('/package/:id', async (req, res) => {
+            const id = req.params.id
+            const updateItem = req.body
+            console.log(updateItem);
+            const query = { _id: ObjectId(id) }
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    price: updateItem.newUpdatePrice
+                }
+            }
+
+            const result = await packageCollection.updateOne(query, updateDoc, options)
+            res.send(result);
+        })
+        //single package
+        app.get('/package/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const item = await packageCollection.findOne(query)
+            res.send(item)
+        })
         //post order
         app.post('/order', async (req, res) => {
             const order = req.body;
