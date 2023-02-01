@@ -61,6 +61,16 @@ async function run() {
         const usersCollection = client.db('royal').collection('users')
         const reviewsCollection = client.db('royal').collection("reviewsCollection");
         const paymentCollection = client.db('royal').collection('payment')
+        const weddingCollection = client.db('royal').collection('wedding')
+        const holudCollection = client.db('royal').collection('holud')
+        const hindustageCollection = client.db('royal').collection('hindustage')
+        const normalbirthdayCollection = client.db('royal').collection('normalbirthday')
+        const themebirthdayCollection = client.db('royal').collection('themebirthday')
+        const businessCollection = client.db('royal').collection('business')
+        console.log('royal db');
+        const reunionCollection = client.db('royal').collection('reunion')
+        const foodCollection = client.db('royal').collection('food')
+        const photographyCollection = client.db('royal').collection('photography')
         console.log('royal db');
 
 
@@ -216,11 +226,54 @@ app.get('/user/:email', checkJwt, async (req, res) => {
             const reviews = await reviewsCollection.find({}).toArray();
             res.send(reviews);
         });
+          //API to get all wedding 
+          app.get("/wedding", async (req, res) => {
+            const wedding = await weddingCollection.find({}).toArray();
+            res.send(wedding);
+        });
+          //API to get all business
+          app.get("/business", async (req, res) => {
+            const business = await businessCollection.find({}).toArray();
+            res.send(business);
+        });
+          //API to get all holud
+          app.get("/holud", async (req, res) => {
+            const holud= await holudCollection.find({}).toArray();
+            res.send(holud);
+        });
+          //API to get all hindustage
+          app.get("/hindustage", async (req, res) => {
+            const hindustage= await hindustageCollection.find({}).toArray();
+            res.send(hindustage);
+        });
+          //API to get all normalbirthday
+          app.get("/normalbirthday", async (req, res) => {
+            const normalbirthday= await normalbirthdayCollection.find({}).toArray();
+            res.send(normalbirthday);
+        });
+          //API to get all themebirthday
+          app.get("/themebirthday", async (req, res) => {
+            const themebirthday= await themebirthdayCollection.find({}).toArray();
+            res.send(themebirthday);
+        });
+          //API to get all reunion
+          app.get("/reunion", async (req, res) => {
+            const reunion= await reunionCollection.find({}).toArray();
+            res.send(reunion);
+        });
+          //API to get all food
+          app.get("/food", async (req, res) => {
+            const food= await foodCollection.find({}).toArray();
+            res.send(food);
+        });
+          //API to get all photography
+          app.get("/photography", async (req, res) => {
+            const photography= await photographyCollection.find({}).toArray();
+            res.send(photography);
+        });
         //API to post a review 
         app.post('/review', async (req, res) => {
-
-            const newReview = req.body;
-            
+            const newReview = req.body; 
             const result = await reviewsCollection.insertOne(newReview);
             res.send(result)
         })
