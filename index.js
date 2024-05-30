@@ -54,7 +54,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 async function run() {
     try {
-
         await client.connect();
         const packageCollection = client.db('royal').collection('package')
         const ordersCollection = client.db('royal').collection("ordersCollection");
