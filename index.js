@@ -194,6 +194,19 @@ async function run() {
             res.send(result)
         
         })
+        //demote
+        app.put('/user/demote-from-admin/:email', checkJwt,  async (req, res) => {
+         
+            const email = req.params.email;
+            const filter = { email: email }
+            const updateDoc = {
+                $set: { role: 'user' },
+            };
+            const result = await usersCollection.updateOne(filter, updateDoc,)
+        
+            res.send(result)
+        
+        })
         //API to get user by user email
 app.get('/user/:email', checkJwt, async (req, res) => {
     const decodedEmail = req.decoded.email;
